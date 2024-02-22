@@ -1,0 +1,42 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "command": "yarn build",
+            "type": "shell",
+            "args": [],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "presentation": {
+                "reveal": "silent",
+                "clear": true,
+                "focus": false,
+                "showReuseMessage": false,
+                "panel": "dedicated"
+            },
+            "group": {"kind":  "build", "isDefault": true}
+        },
+        {
+            "label": "PrepareDebug",
+            "command": "yarn prepareDebug",
+            "type": "shell",
+            "args": [],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "presentation": {
+                "reveal": "silent",
+                "clear": true,
+                "focus": false,
+                "showReuseMessage": false,
+                "panel": "dedicated"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

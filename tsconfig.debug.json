@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "rootDir": "./debug/src",
+        "outDir": "./debug/build",
+        "declarationDir": "/dev/null",
+        "target": "ESNext"
+    },
+    "extends": "./tsconfig.json",
+    "include": [
+        "./debug/src"
+    ]
+}

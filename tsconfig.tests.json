@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        "outDir": "./test",
+        "rootDir": "./test_src",
+        "declarationDir": "/dev/null",
+    },
+    "include": [
+        "./test_src"
+    ],
+    "extends": "./tsconfig.json"
+}
