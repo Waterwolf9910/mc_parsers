@@ -42,12 +42,12 @@ export let throw_on_errors = true
 /**
  * @package
  */
-export let send_error = <T>(msg: string | Error, ret: T = undefined as T) => {
+export function sendError<T>(msg: string | Error, ret?: T): T | undefined {
     if (throw_on_errors) {
         let err = msg
         if (typeof msg == 'string') {
             err = new Error(msg)
-            Error.captureStackTrace(err, send_error)
+            Error.captureStackTrace(err, sendError)
         }
         
         throw err
@@ -61,7 +61,7 @@ export let send_error = <T>(msg: string | Error, ret: T = undefined as T) => {
  * @param pos the block position
  * @returns the chunk position
  */
-export let blockPosToChunk = (pos: XYZPosition): XZPosition => {
+export const blockPosToChunk = (pos: XYZPosition): XZPosition => {
     return {
         x: Math.floor(pos.x / 16),
         z: Math.floor(pos.z / 16)
@@ -73,7 +73,7 @@ export let blockPosToChunk = (pos: XYZPosition): XZPosition => {
  * @param pos the chunk positoin
  * @returns the region position
  */
-export let chunkPosToRegion = (pos: XZPosition): XZPosition => {
+export const chunkPosToRegion = (pos: XZPosition): XZPosition => {
     return {
         x: Math.floor(pos.x / 32),
         z: Math.floor(pos.z / 32)
@@ -85,7 +85,7 @@ export let chunkPosToRegion = (pos: XZPosition): XZPosition => {
  * @param array inital bigint array
  * @returns a Buffer
  */
-export let bigintToBuf = (array: bigint[]): Buffer => {
+export const bigintToBuf = (array: bigint[]): Buffer => {
     return Buffer.from((new BigInt64Array(array)).buffer).swap64()
 }
 
@@ -93,7 +93,7 @@ export let bigintToBuf = (array: bigint[]): Buffer => {
  * JSON.stringify with a bigint replacer
  * @see JSON.stringify
  */
-export let jsonify = (value: any) => {
+export const jsonify = (value: any) => {
     return JSON.stringify(value, (k, v) => {
         if (typeof v == 'bigint') {
             return v.toString()
@@ -107,11 +107,11 @@ export let jsonify = (value: any) => {
  * @param pos the block position
  * @returns a palette index
  */
-export let getIndexFromBlockCoord = (pos: XYZPosition): number => {
+export const getIndexFromBlockCoord = (pos: XYZPosition): number => {
     return (pos.y * 16 * 16 + pos.z * 16 + pos.x) % 4096 + 1
 }
 
-export let x2 = (pos: XYZPosition) => {
+export const x2 = (pos: XYZPosition) => {
     // let pos2 = blockPosToChunk(pos)
     // let section_y = pos.y % 16
     // console.log(section_y)
@@ -121,5 +121,5 @@ export let x2 = (pos: XYZPosition) => {
 }
 
 
-export let getMajorVer = () => parseInt(version.split('.')[0]) || 1
-export let getMinorVer = () => parseInt(version.split('.')[1]) || 20
+export const getMajorVer = () => parseInt(version.split('.')[0]) || 1
+export const getMinorVer = () => parseInt(version.split('.')[1]) || 20

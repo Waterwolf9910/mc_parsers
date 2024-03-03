@@ -4,10 +4,9 @@ import main = require("../../")
 const {
     anvil,
     nbt,
-    utils
+    utils,
+    rcon
 } = main
-
-console.log(nbt.NBTTagType)
 
 // let servers_file = fs.readFileSync("../../test_data/servers.dat")
 // let servers = new nbt.NBTReader(servers_file)
@@ -29,7 +28,7 @@ console.log(nbt.NBTTagType)
 // let one_chunk = new anvil.chunk.Chunk(one_chunk_files.subarray(2*1024*4))
 // console.log(one_chunk)
 
-let region_file = fs.readFileSync("../../test_data/r.0.0.mca")
+/* let region_file = fs.readFileSync("../../test_data/r.0.0.mca")
 let region = new anvil.region.Region(region_file)
 let arr = Object.entries(region.chunks).sort((a, b) => a[1].position.z - b[1].position.z).sort((a, b) => a[1].position.x - b[1].position.x).map(v => { return { ...v[1], chunk: undefined } })
 // fs.writeFileSync("./out2.json", JSON.stringify(arr, null, 4))
@@ -74,6 +73,33 @@ for (let y = 0; y < 16; ++y) {
         }
     }
 }
-fs.writeFileSync("./block_coord.json", JSON.stringify(map, null, 4))
-debugger;
+fs.writeFileSync("./block_coord.json", JSON.stringify(map, null, 4)) */
+// import net from "net"
+// let server = net.createServer()
+// server.once("connection", (s) => {
+//     s.once("data", buf => {
+//         console.log(buf)
+//         server.close()
+//         debugger
+//     })
+// })
+// server.listen(25575)
+// import child_process = require('child_process')
+// child_process.spawn("java", ['-jar', "server.jar", "nogui"], {cwd: "./server", shell: true, stdio: 'inherit'})
+let client = new rcon.RCON
+client.once("open", () => console.log('connected'))
+client.once('close', process.exit)
+client.on("data", buf => console.log(buf, String.fromCharCode(...buf)))
+setTimeout(async () => {
+    await client.connect("password", "localhost")
+    let data = await client.sendCommand('data get entity waterwolf9910 Inventory')
+    console.log(data)
+    // console.log(await client.send('say hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world'))
+    debugger;
+    setInterval(() => {
+        eval('')
+    }, 500)
+// }, 23000)
+})
+// debugger;
 eval("") // Stop garbage collector

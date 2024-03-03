@@ -19,7 +19,7 @@ export class Chunk {
     constructor(buf: Buffer) {
         let header = '0x' + buf[5].toString(16).padStart(2, '0') + buf[6].toString(16).padStart(2, '0')
         if (!utils.known_formats.includes(header)) { //@ts-ignore
-            return utils.send_error("Unknown nbt header", {});
+            return utils.sendError("Unknown nbt header", {});
         }
         this.nbt = <nbt.CompoundTag> nbt.NBTReader.read(buf.subarray(5, 8192 * 2))
         this.data_ver = <number> this.nbt.value.DataVersion.value
@@ -52,7 +52,7 @@ export class Chunk {
 
     public getSortedSections(): nbt.CompoundTag[] {
         if (utils.getMajorVer() <= 1 && utils.getMinorVer() <= 16) {
-            return utils.send_error("Version's lower than 1.16 not yet supported", [])
+            return utils.sendError("Version's lower than 1.16 not yet supported", [])!
         }
         let tags = this.sections.value
             .map((c, i) => {

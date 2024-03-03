@@ -35,7 +35,7 @@ export class Region {
         }
         if (Object.keys(this.chunks).length == 0) {
             //@ts-ignore
-            return utils.send_error("No chunks found in this region", {})
+            return utils.sendError("No chunks found in this region", {})
         }
     }
 

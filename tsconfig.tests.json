@@ -3,7 +3,10 @@
         "module": "CommonJS",
         "outDir": "./test",
         "rootDir": "./test_src",
-        "declarationDir": "/dev/null",
+        "composite": false,
+        "declaration": false,
+        "declarationMap": false,
+        "declarationDir": null
     },
     "include": [
         "./test_src"

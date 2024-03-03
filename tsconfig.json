@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         "strictNullChecks": true,
+        // "noErrorTruncation": true,
         "module": "Node16",
         "rootDir": "./src",
         "outDir": "./lib",

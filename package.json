@@ -4,6 +4,24 @@
     "type": "commonjs",
     "main": "./lib/index.js",
     "types": "./types",
+    "exports": {
+        "nbt": {
+            "default": "./lib/nbt.js",
+            "types": "./types/nbt.d.ts"
+        },
+        "rcon": {
+            "default": "./lib/rcon.js",
+            "types": "./types/rcon.d.ts"
+        },
+        "utils": {
+            "default": "./lib/utils.js",
+            "types": "./types/utils.d.ts"
+        },
+        "anvil": {
+            "default": "./lib/anvil/index.js",
+            "types": "./types/anvil/index.d.ts"
+        }
+    },
     "devDependencies": {
         "@types/mocha": "^10",
         "@types/node": "^20.11.16",

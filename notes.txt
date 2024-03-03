@@ -4,3 +4,5 @@ r.x.z.mca -> (x, z) region coordinate
 chunk coord (x1, z1) to region coord (x2, z2) -> (floor(x1/32), floor(z1/32))
 
 each region starts with 2 1024 4 byte tables
+
+Remeber to move typescript privates within classes to # privates after done debugging
